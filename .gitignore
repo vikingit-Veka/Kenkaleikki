@@ -4,3 +4,8 @@ dist
 .env.local
 *.log
 .DS_Store
+
+# Windows/WSL artifacts
+*:Zone.Identifier
+.env*
+!.env.example
