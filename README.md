@@ -27,7 +27,7 @@ nykyisen kysymyksen, ja kun master aloittaa revealin, sama sivu vaihtuu
 reveal-kiertoon automaattisesti. `couple_answers` paljastuu RLS:ssä vasta
 `reveal`-vaiheessa, joten vastaukset eivät vuoda ennen sitä.
 
-HashRouterin takia URL:t ovat muotoa `https://.../#/guest`.
+HashRouterin takia URL:t ovat muotoa `https://kenkaleikki.vikingit.fi/#/guest`.
 
 ## Tilakone (`event_state.phase`)
 

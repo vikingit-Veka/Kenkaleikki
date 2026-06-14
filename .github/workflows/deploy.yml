@@ -26,8 +26,9 @@ jobs:
       - run: npm ci
       - name: Build
         env:
-          # Asset base path = "/<repo>/" so GitHub Pages resolves bundles.
-          VITE_BASE: /${{ github.event.repository.name }}/
+          # Custom domain serves from root, so base = "/".
+          # (Was "/<repo>/" while on vikingit-veka.github.io/Kenkaleikki/.)
+          VITE_BASE: /
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build

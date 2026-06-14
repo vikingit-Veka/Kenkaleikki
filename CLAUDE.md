@@ -22,7 +22,10 @@ React 18 + TypeScript + Vite 8, React Router 6 (**HashRouter**). Supabase
 ## Ulkoinen tila (mitä on jo pystytetty)
 
 - **Repo:** https://github.com/vikingit-Veka/Kenkaleikki — **julkinen**.
-- **Live:** https://vikingit-veka.github.io/Kenkaleikki/ (Pages, source = Actions).
+- **Live (custom domain):** https://kenkaleikki.vikingit.fi/ (Pages, source =
+  Actions). DNS: CNAME `kenkaleikki` → `vikingit-veka.github.io`. Custom domain
+  serveröi juuresta → `VITE_BASE=/` (deploy.yml) ja `public/CNAME` pitää domainin
+  pystyssä joka deployssa. Vanha `…github.io/Kenkaleikki/` redirectaa tähän.
 - **GitHub secrets** asetettu: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
   (injektoidaan buildiin `deploy.yml`:ssä). Arvot ovat myös `.env`:ssä (gitignored).
 - **Supabase:** Vekan projekti. Schema ajettu. Käytössä uusi *publishable*
@@ -68,6 +71,10 @@ Master vaihtaa vaihetta. Vieraan näkymä `Guest.tsx` rendaa per vaihe;
 
 - **HashRouter, ei BrowserRouter:** GitHub Pagesissa ei ole SPA-fallbackia, joten
   syvälinkit antaisivat 404. Hash välttää tämän ilman 404.html-kikkoja.
+- **Custom domain vikingit.fi:n alle:** jaettu `github.io` saa Androidilla Google
+  Safe Browsing -varoituksen ("Jatka sivustolle") maineperusteisesti. Oma
+  hostname välttää tämän + antaa lyhyen osoitteen. URL-lyhennin EI auta, koska
+  destinaatio (github.io) arvioidaan silti.
 - **Repo julkinen:** Pages vaatii ilmaistilillä julkisen repon. Koodissa ei ole
   salaisuuksia — anon/publishable-avain on luonteeltaan selaimeen tarkoitettu, ja
   service_role-avainta ei käytetä missään.
