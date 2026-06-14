@@ -125,6 +125,30 @@ create policy "couple_answers_update" on public.couple_answers
   with check ((select phase from public.event_state where id = 1) = 'live_questions');
 
 -- ---------------------------------------------------------------------------
+-- Emergency reset (called from master control via RPC). SECURITY DEFINER so it
+-- bypasses RLS to wipe votes/answers; only the authenticated host may execute.
+-- Returns the event to the pre-voting waiting state.
+-- ---------------------------------------------------------------------------
+create or replace function public.reset_event()
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  delete from public.guest_votes;
+  update public.couple_answers
+    set bride_answer = null, groom_answer = null, answered_at = null;
+  update public.event_state
+    set phase = 'scheduled', current_question_index = 0, reveal_started_at = null
+    where id = 1;
+end;
+$$;
+
+revoke all on function public.reset_event() from public, anon;
+grant execute on function public.reset_event() to authenticated;
+
+-- ---------------------------------------------------------------------------
 -- Realtime (used by /screen, /reveal, /control/*)
 -- ---------------------------------------------------------------------------
 alter publication supabase_realtime add table public.event_state;

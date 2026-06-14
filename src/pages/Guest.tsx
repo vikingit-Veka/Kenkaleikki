@@ -20,9 +20,7 @@ export default function Guest() {
     case "voting_open":
       return <Voting />;
     case "scheduled":
-      return (
-        <Message text="Vastaaminen avautuu lauantaina klo 12:00" />
-      );
+      return <Message text="Odotetaan äänestyksen alkua" />;
     case "voting_closed":
       return <Message text="Vastaaminen on päättynyt" />;
     case "live_questions":

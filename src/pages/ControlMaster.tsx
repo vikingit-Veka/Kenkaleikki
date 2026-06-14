@@ -25,16 +25,26 @@ export default function ControlMaster() {
       .eq("id", 1);
   }
 
-  async function nextQuestion() {
+  async function moveQuestion(delta: number) {
     if (!state) return;
     const next = Math.min(
-      state.current_question_index + 1,
+      Math.max(state.current_question_index + delta, 0),
       Math.max(questions.length - 1, 0),
     );
     await supabase
       .from("event_state")
       .update({ current_question_index: next })
       .eq("id", 1);
+  }
+
+  async function resetEvent() {
+    const ok = window.confirm(
+      "Nollataanko tilanne? Tämä POISTAA kaikki vieras­äänet ja parin vastaukset " +
+        "ja palauttaa vieraat odotusnäkymään. Toimintoa ei voi perua.",
+    );
+    if (!ok) return;
+    const { error } = await supabase.rpc("reset_event");
+    if (error) window.alert("Nollaus epäonnistui: " + error.message);
   }
 
   const current = questions[state.current_question_index];
@@ -55,14 +65,15 @@ export default function ControlMaster() {
 
       <div className="button-grid">
         <button onClick={() => setPhase("voting_open")}>Avaa äänestys</button>
-        <button onClick={() => setPhase("voting_closed")}>Sulje äänestys</button>
         <button
           onClick={() => setPhase("live_questions", { current_question_index: 0 })}
         >
           Aloita live-osuus
         </button>
-        <button onClick={nextQuestion}>Seuraava kysymys</button>
+        <button onClick={() => moveQuestion(-1)}>Edellinen kysymys</button>
+        <button onClick={() => moveQuestion(1)}>Seuraava kysymys</button>
         <button
+          className="full-width"
           onClick={() =>
             setPhase("reveal", {
               reveal_started_at: new Date().toISOString(),
@@ -71,6 +82,9 @@ export default function ControlMaster() {
           }
         >
           Aloita reveal
+        </button>
+        <button className="warning" onClick={resetEvent}>
+          Nollaa tilanne
         </button>
         <button className="danger" onClick={() => setPhase("closed")}>
           Sulje tapahtuma
