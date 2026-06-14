@@ -1,14 +1,22 @@
 import { useEventState, useQuestions } from "../lib/hooks";
+import Reveal from "./Reveal";
 
 /**
- * Projector view. During live_questions it shows the big active question.
- * Realtime keeps it in sync with the master control. No results are shown.
+ * Single projector view for the whole event. Realtime keeps it in sync with the
+ * master control:
+ *   - live_questions → big active question (no answers shown)
+ *   - reveal         → the auto-cycling reveal of answers + audience results
+ *   - otherwise      → a neutral title card
  */
 export default function Screen() {
   const state = useEventState(true);
   const questions = useQuestions();
 
   if (!state) return <div className="screen center muted">Ladataan…</div>;
+
+  if (state.phase === "reveal") {
+    return <Reveal />;
+  }
 
   if (state.phase !== "live_questions") {
     return (

@@ -12,15 +12,20 @@ Realtime, RLS) · GitHub Pages.
 
 ## Reitit
 
-| Reitti            | Kuka            | Auth     |
-| ----------------- | --------------- | -------- |
-| `/guest`          | Häävieraat (QR) | ei       |
-| `/screen`         | Valkokangas     | ei       |
-| `/reveal`         | Valkokangas     | juontaja |
-| `/control/master` | Pää-juontaja    | juontaja |
-| `/control/bride`  | Morsian-tiimi   | juontaja |
-| `/control/groom`  | Sulhanen-tiimi  | juontaja |
-| `/login`          | Juontajat       | —        |
+| Reitti            | Kuka                          | Auth     |
+| ----------------- | ----------------------------- | -------- |
+| `/guest`          | Häävieraat (QR)               | ei       |
+| `/screen`         | Valkokangas (live + reveal)   | ei       |
+| `/reveal`         | Pelkkä reveal (valinnainen)   | ei       |
+| `/control/master` | Pää-juontaja                  | juontaja |
+| `/control/bride`  | Morsian-tiimi                 | juontaja |
+| `/control/groom`  | Sulhanen-tiimi                | juontaja |
+| `/login`          | Juontajat                     | —        |
+
+`/screen` on koko illan ainoa valkokangasosoite: live-vaiheessa se näyttää
+nykyisen kysymyksen, ja kun master aloittaa revealin, sama sivu vaihtuu
+reveal-kiertoon automaattisesti. `couple_answers` paljastuu RLS:ssä vasta
+`reveal`-vaiheessa, joten vastaukset eivät vuoda ennen sitä.
 
 HashRouterin takia URL:t ovat muotoa `https://.../#/guest`.
 

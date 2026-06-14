@@ -80,7 +80,8 @@ grant select on public.questions to anon, authenticated;
 grant select on public.event_state to anon, authenticated;
 grant update on public.event_state to authenticated;
 grant select, insert on public.guest_votes to anon, authenticated;
-grant select, update on public.couple_answers to authenticated;
+grant select on public.couple_answers to anon, authenticated;
+grant update on public.couple_answers to authenticated;
 
 -- ---------------------------------------------------------------------------
 -- Row Level Security
@@ -110,10 +111,14 @@ create policy "guest_votes_insert" on public.guest_votes
 create policy "guest_votes_select" on public.guest_votes
   for select using (true);
 
--- couple_answers: readable only by hosts (kept secret from guests until reveal),
--- updatable only by hosts and only during the live questions phase.
+-- couple_answers: readable by hosts at any time, and by everyone once the event
+-- is in the reveal/closed phase (so the projector /screen needs no login).
+-- Stays hidden from guests before reveal, preventing spoilers.
 create policy "couple_answers_select" on public.couple_answers
-  for select to authenticated using (true);
+  for select using (
+    (select auth.role()) = 'authenticated'
+    or (select phase from public.event_state where id = 1) in ('reveal', 'closed')
+  );
 create policy "couple_answers_update" on public.couple_answers
   for update to authenticated
   using ((select phase from public.event_state where id = 1) = 'live_questions')

@@ -16,16 +16,9 @@ export default function App() {
         <Route path="/" element={<Navigate to="/guest" replace />} />
         <Route path="/guest" element={<Guest />} />
         <Route path="/screen" element={<Screen />} />
+        <Route path="/reveal" element={<Reveal />} />
         <Route path="/login" element={<Login />} />
 
-        <Route
-          path="/reveal"
-          element={
-            <RequireAuth>
-              <Reveal />
-            </RequireAuth>
-          }
-        />
         <Route
           path="/control/master"
           element={

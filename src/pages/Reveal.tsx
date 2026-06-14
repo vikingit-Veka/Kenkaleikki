@@ -12,7 +12,8 @@ const FADE_MS = 900;
 /**
  * Reveal view. Cycles through questions automatically every 5 s with a fade
  * transition, showing bride answer, groom answer and audience percentages.
- * Authenticated only (couple_answers is host-readable).
+ * Rendered standalone at /reveal and embedded in /screen during the reveal
+ * phase. No auth needed: couple_answers is RLS-readable once phase = reveal.
  */
 export default function Reveal() {
   const questions = useQuestions();
