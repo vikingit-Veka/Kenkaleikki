@@ -136,9 +136,11 @@ security definer
 set search_path = public
 as $$
 begin
-  delete from public.guest_votes;
+  -- "where true" satisfies Supabase's safeupdate guard (blocks WHERE-less DML).
+  delete from public.guest_votes where true;
   update public.couple_answers
-    set bride_answer = null, groom_answer = null, answered_at = null;
+    set bride_answer = null, groom_answer = null, answered_at = null
+    where true;
   update public.event_state
     set phase = 'scheduled', current_question_index = 0, reveal_started_at = null
     where id = 1;
