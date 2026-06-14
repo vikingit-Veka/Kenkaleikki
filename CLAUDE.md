@@ -22,10 +22,14 @@ React 18 + TypeScript + Vite 8, React Router 6 (**HashRouter**). Supabase
 ## Ulkoinen tila (mitä on jo pystytetty)
 
 - **Repo:** https://github.com/vikingit-Veka/Kenkaleikki — **julkinen**.
-- **Live (custom domain):** https://kenkaleikki.vikingit.fi/ (Pages, source =
-  Actions). DNS: CNAME `kenkaleikki` → `vikingit-veka.github.io`. Custom domain
-  serveröi juuresta → `VITE_BASE=/` (deploy.yml) ja `public/CNAME` pitää domainin
-  pystyssä joka deployssa. Vanha `…github.io/Kenkaleikki/` redirectaa tähän.
+- **Live (custom domain):** https://kenkaleikki.vikingit.fi/ — **aktiivinen,
+  HTTPS pakotettu, Let's Encrypt -sertti approved**. Pages source = Actions.
+  DNS: CNAME `kenkaleikki` → `vikingit-veka.github.io`. Custom domain serveröi
+  juuresta → `VITE_BASE=/` (deploy.yml) ja `public/CNAME` pitää domainin pystyssä
+  joka deployssa. Custom domain asetettu Pages-API:lla (`gh api PUT …/pages
+  -f cname=… -F https_enforced=true`); Actions-deployssa pelkkä CNAME-tiedosto ei
+  riitä, domain on oltava Pages-asetuksissa. Vanha `…github.io/Kenkaleikki/`
+  redirectaa tänne.
 - **GitHub secrets** asetettu: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
   (injektoidaan buildiin `deploy.yml`:ssä). Arvot ovat myös `.env`:ssä (gitignored).
 - **Supabase:** Vekan projekti. Schema ajettu. Käytössä uusi *publishable*
