@@ -79,6 +79,13 @@ typografia, vaihdetaan `typography.css`:ään).
 Master vaihtaa vaihetta. Vieraan näkymä `Guest.tsx` rendaa per vaihe;
 `scheduled` = "Odotetaan äänestyksen alkua" (myös nollauksen jälkeinen lepotila).
 
+`event_state.screen_theme` (`'stage'` | `'paper'`, default `stage`) ohjaa
+projektorin (`/screen`, `/reveal`) teemaa: tumma plum-stage vs vaalea paperi
+valoisaan tilaan. Master togglaa, projektori lukee realtimena (sama kanava kuin
+phase). Sarake lisätään `supabase/add-screen-theme.sql`:llä — aja kerran live-
+projektiin (luki on `screen_theme ?? 'stage'`, joten koodi on turvallinen ennen
+migraatiota, mutta toggle ei vaikuta ennen sitä).
+
 ## Tietokanta + RLS (`supabase/schema.sql`)
 
 - `questions`, `couple_answers` (PK = question_id), `guest_votes`
