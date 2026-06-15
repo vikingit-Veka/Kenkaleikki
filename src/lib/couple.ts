@@ -16,3 +16,19 @@ export function teamName(answer: Answer | null): string {
   if (answer === "groom") return COUPLE.groom;
   return "—";
 }
+
+/**
+ * Role words — used on the reveal for a more ceremonial feel
+ * (Morsian / Sulhanen instead of the first names).
+ */
+export const ROLE = {
+  bride: "Morsian",
+  groom: "Sulhanen",
+} as const;
+
+/** Role word for a team / answer value (`null` → em dash). */
+export function roleName(answer: Answer | null): string {
+  if (answer === "bride") return ROLE.bride;
+  if (answer === "groom") return ROLE.groom;
+  return "—";
+}

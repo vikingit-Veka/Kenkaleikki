@@ -5,7 +5,7 @@ import {
   useGuestVotes,
   useQuestions,
 } from "../lib/hooks";
-import { COUPLE, teamName } from "../lib/couple";
+import { ROLE, roleName } from "../lib/couple";
 import type { Answer } from "../lib/types";
 
 const STEP_MS = 5000;
@@ -69,19 +69,19 @@ export default function Reveal() {
 
         <div className="reveal-rows">
           <RevealRow
-            label={`${COUPLE.bride} vastasi`}
+            label={`${ROLE.bride} vastasi`}
             value={answer?.bride_answer ?? null}
           />
           <RevealRow
-            label={`${COUPLE.groom} vastasi`}
+            label={`${ROLE.groom} vastasi`}
             value={answer?.groom_answer ?? null}
           />
         </div>
 
         <div className="audience">
           <div className="muted">Yleisö</div>
-          <Bar label={COUPLE.bride} pct={bridePct} team="bride" />
-          <Bar label={COUPLE.groom} pct={groomPct} team="groom" />
+          <Bar label={ROLE.bride} pct={bridePct} team="bride" />
+          <Bar label={ROLE.groom} pct={groomPct} team="groom" />
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@ function RevealRow({ label, value }: { label: string; value: Answer | null }) {
   return (
     <div className="reveal-row">
       <span className="muted">{label}:</span>
-      <span className="reveal-value">{teamName(value)}</span>
+      <span className="reveal-value">{roleName(value)}</span>
     </div>
   );
 }
