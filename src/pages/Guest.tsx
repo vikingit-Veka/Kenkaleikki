@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "../lib/supabase";
 import { getSessionId } from "../lib/session";
 import { useEventState, useQuestions } from "../lib/hooks";
+import { COUPLE } from "../lib/couple";
 import type { Answer } from "../lib/types";
 
 /**
@@ -74,16 +75,22 @@ export default function Guest() {
         <h1 className="question">{question.text}</h1>
         <div className="choices">
           <button
-            className={selected === "bride" ? "choice selected" : "choice"}
+            className={`choice bride${selected === "bride" ? " selected" : ""}`}
             onClick={() => setSelected("bride")}
           >
-            Morsian
+            <span className="choice-label">
+              <span className="choice-name">{COUPLE.bride}</span>
+              <span className="choice-role">Morsian</span>
+            </span>
           </button>
           <button
-            className={selected === "groom" ? "choice selected" : "choice"}
+            className={`choice groom${selected === "groom" ? " selected" : ""}`}
             onClick={() => setSelected("groom")}
           >
-            Sulhanen
+            <span className="choice-label">
+              <span className="choice-name">{COUPLE.groom}</span>
+              <span className="choice-role">Sulhanen</span>
+            </span>
           </button>
         </div>
         <button className="next" disabled={!selected || saving} onClick={next}>

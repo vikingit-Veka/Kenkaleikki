@@ -4,6 +4,7 @@ import {
   useGuestVotes,
   useQuestions,
 } from "../lib/hooks";
+import { COUPLE, teamName } from "../lib/couple";
 import type { Answer } from "../lib/types";
 
 const STEP_MS = 5000;
@@ -62,41 +63,52 @@ export default function Reveal() {
         <h1 className="question big">{question.text}</h1>
 
         <div className="reveal-rows">
-          <RevealRow label="Morsian vastasi" value={answer?.bride_answer ?? null} />
-          <RevealRow label="Sulhanen vastasi" value={answer?.groom_answer ?? null} />
+          <RevealRow
+            label={`${COUPLE.bride} vastasi`}
+            value={answer?.bride_answer ?? null}
+          />
+          <RevealRow
+            label={`${COUPLE.groom} vastasi`}
+            value={answer?.groom_answer ?? null}
+          />
         </div>
 
         <div className="audience">
           <div className="muted">Yleisö</div>
-          <Bar label="Morsian" pct={bridePct} />
-          <Bar label="Sulhanen" pct={groomPct} />
+          <Bar label={COUPLE.bride} pct={bridePct} team="bride" />
+          <Bar label={COUPLE.groom} pct={groomPct} team="groom" />
         </div>
       </div>
     </div>
   );
 }
 
-function answerLabel(value: Answer | null): string {
-  if (value === "bride") return "Morsian";
-  if (value === "groom") return "Sulhanen";
-  return "—";
-}
-
 function RevealRow({ label, value }: { label: string; value: Answer | null }) {
   return (
     <div className="reveal-row">
       <span className="muted">{label}:</span>
-      <span className="reveal-value">{answerLabel(value)}</span>
+      <span className="reveal-value">{teamName(value)}</span>
     </div>
   );
 }
 
-function Bar({ label, pct }: { label: string; pct: number }) {
+function Bar({
+  label,
+  pct,
+  team,
+}: {
+  label: string;
+  pct: number;
+  team: Answer;
+}) {
   return (
     <div className="bar-row">
       <span className="bar-label">{label}</span>
       <span className="bar-track">
-        <span className="bar-fill" style={{ width: `${pct}%` }} />
+        <span
+          className={`bar-fill ${team}`}
+          style={{ width: `${pct}%` }}
+        />
       </span>
       <span className="bar-pct">{pct} %</span>
     </div>

@@ -1,4 +1,5 @@
 import { useEventState, useQuestions } from "../lib/hooks";
+import { COUPLE } from "../lib/couple";
 import Reveal from "./Reveal";
 
 /**
@@ -20,8 +21,17 @@ export default function Screen() {
 
   if (state.phase !== "live_questions") {
     return (
-      <div className="screen center">
+      <div className="screen center stage">
+        <p className="stage-couple">
+          {COUPLE.bride} &amp; {COUPLE.groom}
+        </p>
+        <div className="kl-ornament">
+          <span className="kl-ornament__mark">◆</span>
+        </div>
         <h1 className="message big">Kenkäleikki</h1>
+        <span className="kl-eyebrow" style={{ color: "var(--text-on-stage-muted)" }}>
+          Hääjuhla
+        </span>
       </div>
     );
   }

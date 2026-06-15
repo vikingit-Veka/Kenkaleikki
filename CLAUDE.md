@@ -19,6 +19,27 @@ palvelinta** — data Supabasessa, UI GitHub Pagesissa. Mitoitus ~50–150 viera
 React 18 + TypeScript + Vite 8, React Router 6 (**HashRouter**). Supabase
 (Postgres + Realtime + RLS) + supabase-js. Deploy: GitHub Actions → GitHub Pages.
 
+## Teema / Design system
+
+Hääväripaletti on käytössä — **ei enää** vanha tumma gold/purple placeholder.
+Tokenit `src/design-system/` (Claude Design -bundlesta: `tokens/colors|typography|
+spacing|base.css` + `styles.css`-entry, jonka `src/index.css` importtaa ensin).
+Kaksi pintaa: **cream "paperi"** vieraan/juontajan puhelimelle ja **deep plum
+"stage"** projektorille (`.screen.stage`). Tiimivärit: morsian = fuksia, sulhanen
+= vihreä (`.choice.bride` / `.choice.groom`). Typografia: Cormorant Garamond
+(display), Pinyon Script (parin nimet), Mulish (UI) — Google Fontsista
+`typography.css`:n `@import`illa. Ikoniton: tyypografiset glyfit (❀ ❦ ◆ ✓).
+Sovellus tyylittyy luokkapohjaisesti `index.css`:ssä, joka mappaa luokat
+DS-tokeneihin — ei DS:n React-komponentteja tuotannossa.
+
+Parin nimet ovat yhdessä paikassa: `src/lib/couple.ts` (`COUPLE` + `teamName`).
+**Essi** = morsian (fuksia/❀), **Samuli** = sulhanen (vihreä/❦). Nimet näkyvät
+äänestysruuduissa (nimi + pieni rooli­alaotsikko), reveal-riveissä/palkeissa ja
+projektorin idle-kortin script-wordmarkissa.
+
+**Avoin:** lopullinen fonttisuunta odottaa vahvistusta (jos hääkutsulla oma
+typografia, vaihdetaan `typography.css`:ään).
+
 ## Ulkoinen tila (mitä on jo pystytetty)
 
 - **Repo:** https://github.com/vikingit-Veka/Kenkaleikki — **julkinen**.

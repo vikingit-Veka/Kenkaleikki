@@ -1,0 +1,106 @@
+/* ===========================================================================
+   Kenkäleikki — Colors
+   A warm garden-wedding palette: fuchsia & plum, peach & orange, sage greens,
+   honey gold, and wood-brown neutrals on cream paper.
+   Base ramps first, then semantic aliases. Use semantic tokens in product code.
+   =========================================================================== */
+
+:root {
+  /* --- Fuchsia / plum (primary — "tumma pinkki / violetti / fuksia") ------ */
+  --fuchsia-50:  #fbeaf3;
+  --fuchsia-100: #f6d4e7;
+  --fuchsia-200: #eca7cd;
+  --fuchsia-300: #e07eb4;
+  --fuchsia-400: #cf5497;
+  --fuchsia-500: #b8327f;  /* primary */
+  --fuchsia-600: #9b2c6b;
+  --fuchsia-700: #7a2350;
+  --plum-800:    #4e1f3d;
+  --plum-900:    #361329;  /* deep stage / projector background */
+
+  /* --- Peach / orange ("persikanvärinen / oranssi") ----------------------- */
+  --peach-50:   #fdf1e7;
+  --peach-100:  #fbe0c8;
+  --peach-200:  #f8c79c;
+  --peach-300:  #f3a96b;  /* peach */
+  --orange-400: #ec8442;
+  --orange-500: #df6a2c;  /* orange */
+  --orange-600: #bd5420;
+
+  /* --- Green ("kirkas tumma / vaalea vihreä") ------------------------------ */
+  --green-50:   #eaf1e3;
+  --green-100:  #d6e4c9;
+  --green-200:  #aecc97;
+  --green-300:  #87b06a;  /* light / bright green */
+  --green-500:  #5b8c4f;
+  --green-600:  #436b3c;  /* dark green */
+  --green-700:  #2f4f2c;
+
+  /* --- Gold ("kulta") ----------------------------------------------------- */
+  --gold-100: #f4e8c8;
+  --gold-200: #e8d199;
+  --gold-300: #d9b85f;
+  --gold-400: #c9a14a;  /* gold */
+  --gold-500: #ab8636;
+  --gold-600: #8a6b29;
+
+  /* --- Wood ("puu") + cream paper neutrals -------------------------------- */
+  --wood-300: #cbab86;
+  --wood-400: #b08a5f;
+  --wood-500: #936f44;
+  --wood-600: #6f5232;
+  --wood-700: #4f3a24;
+
+  --cream-50:  #fcf8f1;  /* page paper */
+  --cream-100: #f7efe1;
+  --cream-200: #efe3cf;
+  --cream-300: #e4d3b8;
+
+  --ink-900: #2c1a23;  /* near-black plum-brown — strong text */
+  --ink-700: #4d3640;
+  --ink-500: #6f5a63;
+  --ink-300: #9a8890;
+
+  --white: #fffdf9;     /* warm white (card surface) */
+
+  /* --- Semantic: brand ---------------------------------------------------- */
+  --color-primary:        var(--fuchsia-500);
+  --color-primary-strong: var(--fuchsia-600);
+  --color-primary-soft:   var(--fuchsia-100);
+  --color-secondary:      var(--green-600);
+  --color-accent-warm:    var(--orange-500);
+  --color-accent-gold:    var(--gold-400);
+
+  /* Team colors for the game — bride (pink) vs groom (green) ---------------- */
+  --color-bride:      var(--fuchsia-500);
+  --color-bride-soft: var(--fuchsia-100);
+  --color-groom:      var(--green-600);
+  --color-groom-soft: var(--green-100);
+
+  /* --- Semantic: surfaces ------------------------------------------------- */
+  --surface-page:    var(--cream-50);
+  --surface-card:    var(--white);
+  --surface-sunken:  var(--cream-100);
+  --surface-raised:  var(--white);
+  --surface-stage:   var(--plum-900);   /* projector / reveal background */
+  --surface-stage-2: var(--plum-800);
+
+  /* --- Semantic: text ----------------------------------------------------- */
+  --text-strong:    var(--ink-900);
+  --text-body:      var(--ink-700);
+  --text-muted:     var(--ink-500);
+  --text-on-primary: var(--white);
+  --text-on-stage:   var(--cream-50);
+  --text-on-stage-muted: #c7a9bd;
+
+  /* --- Semantic: lines & accents ------------------------------------------ */
+  --border:        var(--cream-200);
+  --border-strong: var(--wood-300);
+  --hairline-gold: var(--gold-300);
+  --focus-ring:    var(--fuchsia-400);
+
+  /* --- Semantic: status --------------------------------------------------- */
+  --color-success: var(--green-500);
+  --color-warning: var(--orange-500);
+  --color-danger:  #c0392b;
+}

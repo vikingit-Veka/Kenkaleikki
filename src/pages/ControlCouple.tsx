@@ -1,5 +1,6 @@
 import { supabase } from "../lib/supabase";
 import { useCoupleAnswers, useEventState, useQuestions } from "../lib/hooks";
+import { COUPLE, teamName } from "../lib/couple";
 import type { Answer } from "../lib/types";
 
 /**
@@ -15,7 +16,8 @@ export default function ControlCouple({ role }: { role: "bride" | "groom" }) {
   if (!state) return <div className="screen center muted">Ladataan…</div>;
 
   const question = questions[state.current_question_index];
-  const title = role === "bride" ? "Morsian" : "Sulhanen";
+  const title = role === "bride" ? COUPLE.bride : COUPLE.groom;
+  const roleLabel = role === "bride" ? "Morsian" : "Sulhanen";
   const column = role === "bride" ? "bride_answer" : "groom_answer";
   const saved = question
     ? answers.find((a) => a.question_id === question.id)?.[column]
@@ -34,6 +36,7 @@ export default function ControlCouple({ role }: { role: "bride" | "groom" }) {
   return (
     <div className="screen control">
       <h1>{title}</h1>
+      <span className="kl-eyebrow">{roleLabel}</span>
       {!live && (
         <p className="muted">
           Vastaaminen on mahdollista vasta live-osuuden aikana.
@@ -45,25 +48,27 @@ export default function ControlCouple({ role }: { role: "bride" | "groom" }) {
       <h2 className="question">{question?.text ?? "—"}</h2>
       <div className="choices">
         <button
-          className={saved === "bride" ? "choice selected" : "choice"}
+          className={`choice bride${saved === "bride" ? " selected" : ""}`}
           disabled={!live}
           onClick={() => save("bride")}
         >
-          Morsian
+          <span className="choice-label">
+            <span className="choice-name">{COUPLE.bride}</span>
+            <span className="choice-role">Morsian</span>
+          </span>
         </button>
         <button
-          className={saved === "groom" ? "choice selected" : "choice"}
+          className={`choice groom${saved === "groom" ? " selected" : ""}`}
           disabled={!live}
           onClick={() => save("groom")}
         >
-          Sulhanen
+          <span className="choice-label">
+            <span className="choice-name">{COUPLE.groom}</span>
+            <span className="choice-role">Sulhanen</span>
+          </span>
         </button>
       </div>
-      {saved && (
-        <p className="muted">
-          Tallennettu: {saved === "bride" ? "Morsian" : "Sulhanen"}
-        </p>
-      )}
+      {saved && <p className="muted">Tallennettu: {teamName(saved)}</p>}
     </div>
   );
 }

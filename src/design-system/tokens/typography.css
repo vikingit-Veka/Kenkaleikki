@@ -1,0 +1,49 @@
+/* ===========================================================================
+   Kenkäleikki — Typography
+   Display serif: Cormorant Garamond (romantic, high-contrast — questions,
+   couple names, the big screen). Script accent: Pinyon Script (couple names,
+   flourishes, used sparingly). UI sans: Mulish (buttons, labels, controls).
+   NOTE: the original app used system-ui only; these faces are a brand proposal.
+   =========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Mulish:wght@400;500;600;700;800&family=Pinyon+Script&display=swap');
+
+:root {
+  /* --- Families ----------------------------------------------------------- */
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-script:  "Pinyon Script", "Snell Roundhand", cursive;
+  --font-sans:    "Mulish", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* --- Weights ------------------------------------------------------------ */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extra:    800;
+
+  /* --- Type scale (fluid where it matters) -------------------------------- */
+  --text-xs:   0.8125rem;   /* 13px — captions, meta */
+  --text-sm:   0.9375rem;   /* 15px — secondary UI */
+  --text-base: 1.0625rem;   /* 17px — body / controls */
+  --text-lg:   1.25rem;     /* 20px — emphasised UI */
+  --text-xl:   1.5rem;      /* 24px — card headings */
+  --text-2xl:  2rem;        /* 32px — section titles */
+
+  /* Display steps — used with --font-display */
+  --display-sm: clamp(1.8rem, 5vw, 2.6rem);   /* @kind font */
+  --display-md: clamp(2.4rem, 7vw, 3.6rem);   /* @kind font */
+  --display-lg: clamp(2.8rem, 8vw, 5rem);     /* @kind font */
+  --display-xl: clamp(3.5rem, 11vw, 7.5rem);  /* @kind font */
+
+  /* --- Line heights ------------------------------------------------------- */
+  --leading-tight:   1.08;
+  --leading-snug:    1.2;
+  --leading-normal:  1.45;
+  --leading-relaxed: 1.6;
+
+  /* --- Tracking ----------------------------------------------------------- */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.16em;  /* uppercase eyebrow / progress labels */
+}

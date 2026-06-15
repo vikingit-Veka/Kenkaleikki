@@ -1,0 +1,86 @@
+/* ===========================================================================
+   Kenkäleikki — Base layer
+   Page defaults + a few brand utilities (eyebrow label, gold ornament divider).
+   Tokens come from colors/typography/spacing — this file only consumes them.
+   =========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings default to the display serif */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--text-strong);
+  margin: 0;
+}
+
+/* --- Brand utilities ------------------------------------------------------ */
+
+/* Uppercase tracked eyebrow — used for "Kysymys 3 / 8" and section labels */
+.kl-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Script flourish — couple names, "&" */
+.kl-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+/* Gold ornament divider — a hairline with a centered diamond */
+.kl-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  color: var(--gold-400);
+}
+.kl-ornament::before,
+.kl-ornament::after {
+  content: "";
+  height: 1px;
+  width: clamp(28px, 12vw, 90px);
+  background: linear-gradient(90deg, transparent, var(--hairline-gold));
+}
+.kl-ornament::after {
+  background: linear-gradient(90deg, var(--hairline-gold), transparent);
+}
+.kl-ornament__mark {
+  font-size: 0.7em;
+  letter-spacing: 0.3em;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
