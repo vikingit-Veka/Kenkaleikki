@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   useCoupleAnswers,
+  useEventState,
   useGuestVotes,
   useQuestions,
 } from "../lib/hooks";
@@ -20,6 +21,10 @@ export default function Reveal() {
   const questions = useQuestions();
   const answers = useCoupleAnswers(true);
   const votes = useGuestVotes(true);
+  const eventState = useEventState(true);
+  const stageClass = `screen center stage${
+    eventState?.screen_theme === "paper" ? " light" : ""
+  }`;
 
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -52,7 +57,7 @@ export default function Reveal() {
   const groomPct = total ? 100 - bridePct : 0;
 
   return (
-    <div className="screen center stage">
+    <div className={stageClass}>
       <div
         className="reveal-card"
         style={{

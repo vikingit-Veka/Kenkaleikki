@@ -50,7 +50,11 @@ create table public.event_state (
   current_question_index integer not null default 0,
   reveal_started_at timestamptz,
   voting_opens_at timestamptz,
-  voting_closes_at timestamptz
+  voting_closes_at timestamptz,
+  -- projector surface theme: dark plum stage (default) or light cream paper
+  screen_theme text not null default 'stage' check (
+    screen_theme in ('stage', 'paper')
+  )
 );
 
 insert into public.event_state (id, phase) values (1, 'draft');

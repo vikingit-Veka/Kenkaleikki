@@ -9,6 +9,13 @@ export type Phase =
 
 export type Answer = "bride" | "groom";
 
+/**
+ * Projector surface theme. `stage` = the dark plum stage (default);
+ * `paper` = the light cream surface, for bright rooms where the dark stage
+ * washes out. Toggled from the master control, applied on the screen view.
+ */
+export type ScreenTheme = "stage" | "paper";
+
 export interface Question {
   id: string;
   order_index: number;
@@ -23,6 +30,7 @@ export interface EventState {
   reveal_started_at: string | null;
   voting_opens_at: string | null;
   voting_closes_at: string | null;
+  screen_theme: ScreenTheme;
 }
 
 export interface CoupleAnswer {

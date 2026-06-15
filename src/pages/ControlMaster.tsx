@@ -47,7 +47,17 @@ export default function ControlMaster() {
     if (error) window.alert("Nollaus epäonnistui: " + error.message);
   }
 
+  async function toggleScreenTheme() {
+    if (!state) return;
+    const next = state.screen_theme === "paper" ? "stage" : "paper";
+    await supabase
+      .from("event_state")
+      .update({ screen_theme: next })
+      .eq("id", 1);
+  }
+
   const current = questions[state.current_question_index];
+  const screenTheme = state.screen_theme ?? "stage";
 
   return (
     <div className="screen control">
@@ -61,6 +71,10 @@ export default function ControlMaster() {
           {questions.length}
         </div>
         <div className="muted current-q">{current?.text ?? "—"}</div>
+        <div>
+          Näytön teema:{" "}
+          <strong>{screenTheme === "paper" ? "Vaalea" : "Tumma"}</strong>
+        </div>
       </div>
 
       <div className="button-grid">
@@ -82,6 +96,11 @@ export default function ControlMaster() {
           }
         >
           Aloita reveal
+        </button>
+        <button className="theme-toggle" onClick={toggleScreenTheme}>
+          {screenTheme === "paper"
+            ? "Vaihda näyttö tummaksi"
+            : "Vaihda näyttö vaaleaksi"}
         </button>
         <button className="warning" onClick={resetEvent}>
           Nollaa tilanne

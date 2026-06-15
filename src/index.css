@@ -487,3 +487,53 @@ input:focus {
   font-size: var(--text-xl);
   color: var(--gold-300);
 }
+
+/* the idle "Hääjuhla" eyebrow follows the stage theme */
+.stage-eyebrow {
+  color: var(--text-on-stage-muted);
+}
+
+/* host control: full-width neutral toggle (not the gold reveal button) */
+.theme-toggle {
+  grid-column: 1 / -1;
+}
+
+/* ---------------------------------------------------------------------------
+   Projector LIGHT theme — `.screen.stage.light`
+   For bright rooms: swap the dark plum stage for the cream paper surface and
+   flip the stage text from light to dark. Toggled from the master control.
+   --------------------------------------------------------------------------- */
+.screen.stage.light {
+  color: var(--text-body);
+  background:
+    radial-gradient(120% 55% at 50% -8%, var(--fuchsia-50), transparent 60%),
+    var(--surface-page);
+}
+
+.screen.stage.light::after {
+  border-color: color-mix(in srgb, var(--gold-500) 40%, transparent);
+}
+
+.screen.stage.light .question.big,
+.screen.stage.light .message.big {
+  color: var(--text-strong);
+}
+
+.screen.stage.light .counter,
+.screen.stage.light .muted,
+.screen.stage.light .stage-eyebrow {
+  color: var(--text-muted);
+}
+
+.screen.stage.light .stage-couple {
+  color: var(--gold-600);
+}
+
+.screen.stage.light .reveal-value,
+.screen.stage.light .bar-pct {
+  color: var(--gold-600);
+}
+
+.screen.stage.light .bar-track {
+  background: var(--surface-sunken);
+}

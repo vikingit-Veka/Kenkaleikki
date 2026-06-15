@@ -19,9 +19,13 @@ export default function Screen() {
     return <Reveal />;
   }
 
+  const stageClass = `screen center stage${
+    state.screen_theme === "paper" ? " light" : ""
+  }`;
+
   if (state.phase !== "live_questions") {
     return (
-      <div className="screen center stage">
+      <div className={stageClass}>
         <p className="stage-couple">
           {COUPLE.bride} &amp; {COUPLE.groom}
         </p>
@@ -29,9 +33,7 @@ export default function Screen() {
           <span className="kl-ornament__mark">◆</span>
         </div>
         <h1 className="message big">Kenkäleikki</h1>
-        <span className="kl-eyebrow" style={{ color: "var(--text-on-stage-muted)" }}>
-          Hääjuhla
-        </span>
+        <span className="kl-eyebrow stage-eyebrow">Hääjuhla</span>
       </div>
     );
   }
@@ -39,7 +41,7 @@ export default function Screen() {
   const question = questions[state.current_question_index];
 
   return (
-    <div className="screen center stage">
+    <div className={stageClass}>
       <div className="counter muted">
         Kysymys {state.current_question_index + 1} / {questions.length}
       </div>
