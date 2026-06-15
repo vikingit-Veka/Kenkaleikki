@@ -54,7 +54,7 @@ body,
   position: relative;
   max-width: none;
   width: 100%;
-  gap: var(--space-10);
+  gap: clamp(1.25rem, 4vh, 2.5rem);
   color: var(--text-on-stage);
   background:
     radial-gradient(140% 90% at 50% 0%, var(--plum-800), transparent 70%),
@@ -94,7 +94,9 @@ body,
 
 .question.big {
   font-size: clamp(2rem, 5.2vw, 4.4rem);
-  max-width: 18ch;
+  /* Wider column for long questions → fewer lines, font stays big, so the
+     reveal answers + audience bars below it remain on-screen. */
+  max-width: min(30ch, 92vw);
   color: var(--text-on-stage);
 }
 
@@ -415,7 +417,7 @@ input:focus {
 .reveal-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: clamp(1rem, 3.5vh, 2rem);
   width: 100%;
   align-items: center;
 }
